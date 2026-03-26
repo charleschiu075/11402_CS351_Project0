@@ -1,5 +1,4 @@
 #include <iostream>
-#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -19,14 +18,13 @@ int main() {
     cout << "Enter the target number: ";
     cin >> target;
 
-    unordered_map<int, int> seen;
     for (int i = 0; i < n; i++) {
-        int complement = target - nums[i];
-        if (seen.find(complement) != seen.end()) {
-            cout << "[" << seen[complement] << ", " << i << "]\n";
-            return 0;
+        for (int j = i + 1; j < n; j++) {
+            if (nums[i] + nums[j] == target) {
+                cout << "[" << i << ", " << j << "]\n";
+                return 0;
+            }
         }
-        seen[nums[i]] = i;
     }
 
     cout << "No valid pair found.\n";
