@@ -4,17 +4,18 @@
 
 using namespace std;
 
-vector<int> twoSum(const vector<int>& nums, int target) {
-    unordered_map<int, int> seenIndex;
+vector<int> twoSumHash(const vector<int>& nums, int target) {
+    unordered_map<int, int> valueToIndex;
 
     for (int i = 0; i < static_cast<int>(nums.size()); i++) {
-        int complement = target - nums[i];
+        const int complement = target - nums[i];
 
-        if (seenIndex.find(complement) != seenIndex.end()) {
-            return {seenIndex[complement], i};
+        auto match = valueToIndex.find(complement);
+        if (match != valueToIndex.end()) {
+            return {match->second, i};
         }
 
-        seenIndex[nums[i]] = i;
+        valueToIndex[nums[i]] = i;
     }
 
     return {};
@@ -35,7 +36,7 @@ int main() {
     cout << "Enter the target number: ";
     cin >> target;
 
-    vector<int> answer = twoSum(nums, target);
+    vector<int> answer = twoSumHash(nums, target);
     if (!answer.empty()) {
         cout << "[" << answer[0] << ", " << answer[1] << "]\n";
     } else {
