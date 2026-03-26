@@ -1,18 +1,49 @@
-# Two Sum
-Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+# Two Sum Array (C++)
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+This project solves the Two Sum problem for an integer array in C++.
+The implementation uses a hash map (`unordered_map`) to achieve linear time lookup.
 
-You can return the answer in any order.
+## Problem
 
- 
+Given an integer array `nums` and an integer `target`, return the indices of two numbers such that they add up to `target`.
 
-**Example:**
+## Project Structure
 
-Input: nums = [2,7,11,15], target = 9
-Output: [0,1]
-Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-#!/usr/bin/env python
-# coding: utf-8
+- `src/` contains source code.
+- `docs/` contains project documentation.
+- `README.md` is the root project overview.
 
-# In[ ]:
+## Build
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic src/main.cpp -o two_sum
+```
+
+## Run
+
+```bash
+./two_sum
+```
+
+## Example
+
+Input:
+
+```text
+4
+2 7 11 15
+9
+```
+
+Output:
+
+```text
+[0, 1]
+```
+
+## Documentation
+
+- `docs/overview.md`
+- `docs/algorithm.md`
+- `docs/build-and-run.md`
+- `docs/examples.md`
