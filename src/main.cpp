@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<int> twoSum(const vector<int>& nums, int target) {
+vector<int> twoSumArray(const vector<int>& nums, int target) {
     unordered_map<int, int> seenIndex;
 
     for (int i = 0; i < static_cast<int>(nums.size()); i++) {
@@ -35,7 +35,7 @@ int main() {
     cout << "Enter the target number: ";
     cin >> target;
 
-    vector<int> answer = twoSum(nums, target);
+    vector<int> answer = twoSumArray(nums, target);
     if (!answer.empty()) {
         cout << "[" << answer[0] << ", " << answer[1] << "]\n";
     } else {
