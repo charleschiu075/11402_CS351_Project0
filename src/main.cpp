@@ -1,47 +1,46 @@
 #include <iostream>
-#include <unordered_map>
 #include <vector>
 
-using namespace std;
+#include "two_sum.h"
 
-vector<int> twoSumHash(const vector<int>& nums, int target) {
-    unordered_map<int, int> valueToIndex;
+namespace {
 
-    for (int i = 0; i < static_cast<int>(nums.size()); i++) {
-        const int complement = target - nums[i];
-
-        auto match = valueToIndex.find(complement);
-        if (match != valueToIndex.end()) {
-            return {match->second, i};
-        }
-
-        valueToIndex[nums[i]] = i;
+void PrintResult(const char* label, const std::vector<int>& result) {
+    std::cout << label << ": ";
+    if (result.empty()) {
+        std::cout << "no valid pair found\n";
+        return;
     }
-
-    return {};
+    std::cout << "[" << result[0] << ", " << result[1] << "]\n";
 }
 
+}  // namespace
+
 int main() {
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
-
-    vector<int> nums(n);
-    cout << "Enter " << n << " integers: ";
-    for (int i = 0; i < n; i++) {
-        cin >> nums[i];
+    int n = 0;
+    std::cout << "Enter number of elements: ";
+    if (!(std::cin >> n) || n < 0) {
+        std::cerr << "Invalid input.\n";
+        return 1;
     }
 
-    int target;
-    cout << "Enter the target number: ";
-    cin >> target;
-
-    vector<int> answer = twoSumHash(nums, target);
-    if (!answer.empty()) {
-        cout << "[" << answer[0] << ", " << answer[1] << "]\n";
-    } else {
-        cout << "No valid pair found.\n";
+    std::vector<int> nums(static_cast<std::size_t>(n));
+    std::cout << "Enter " << n << " integers: ";
+    for (int i = 0; i < n; ++i) {
+        if (!(std::cin >> nums[static_cast<std::size_t>(i)])) {
+            std::cerr << "Invalid input.\n";
+            return 1;
+        }
     }
 
+    int target = 0;
+    std::cout << "Enter the target number: ";
+    if (!(std::cin >> target)) {
+        std::cerr << "Invalid input.\n";
+        return 1;
+    }
+
+    PrintResult("TwoSumArray    ", two_sum::TwoSumArray(nums, target));
+    PrintResult("TwoSumHashTable", two_sum::TwoSumHashTable(nums, target));
     return 0;
 }

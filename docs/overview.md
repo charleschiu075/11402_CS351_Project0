@@ -1,28 +1,42 @@
-# Project Overview
+# Overview
 
-## Goal
+## Problem
 
-Solve the Two Sum problem in C++ using a hash-based approach.
+Given an array of integers `nums` and an integer `target`, return the
+indices of the two numbers that add up to `target`.
 
-## Input and Output
+- Each input has exactly one solution.
+- The same element may not be used twice.
+- The order of the returned indices is not constrained.
 
-- Input:
-  - Number of elements `n`
-  - `n` integers
-  - Target integer
-- Output:
-  - Indices of two elements that sum to target, printed as `[i, j]`
+LeetCode reference: <https://leetcode.com/problems/two-sum/>
 
-## Key Idea
+## Goals
 
-Use a hash map (`unordered_map`) to store values already seen and their indices.
-For each current value `x`, look for `target - x` in the hash map.
+This project implements and compares two algorithmic approaches:
 
-## Complexity
+1. **`TwoSumArray`** — nested-loop brute force. Establishes a correctness
+   baseline and demonstrates the cost of a quadratic scan.
+2. **`TwoSumHashTable`** — single-pass hash map. Trades extra memory for
+   linear time by remembering values already seen and looking up the
+   complement in O(1) average.
 
-- Time: O(n)
-- Space: O(n)
+Both functions share an identical signature:
 
-## Source File
+```cpp
+std::vector<int> TwoSumArray(const std::vector<int>& nums, int target);
+std::vector<int> TwoSumHashTable(const std::vector<int>& nums, int target);
+```
 
-- `src/main.cpp`
+They return the two indices on success and an empty vector when no pair
+exists. Returning empty (rather than asserting) makes the functions safe
+to test on edge inputs (empty array, single element, no solution).
+
+## Deliverables
+
+- Two implementations (`src/two_sum_array.cpp`, `src/two_sum_hash.cpp`).
+- Comprehensive unit tests parametrized over both implementations, so a
+  single failure surfaces a divergence between the two.
+- GitHub Actions CI running both implementations on every push and PR.
+- Multi-stage Dockerfile that runs the test suite during the build.
+- Complexity analysis ([`algorithm.md`](algorithm.md)).

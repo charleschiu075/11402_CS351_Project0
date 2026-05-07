@@ -1,0 +1,11 @@
+.git
+.github
+build
+**/build
+**/.DS_Store
+docs
+README.md
+requirements.md
+*.md
+Dockerfile
+.dockerignore
